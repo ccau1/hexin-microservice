@@ -1,0 +1,10 @@
+{
+  "verbose": false,
+  "ext": "ts js json yaml",
+  "watch": [
+      "src/**/*.ts",
+      "src/**/*.yaml"
+  ],
+  "ignore": [],
+  "exec": "node --inspect=0.0.0.0:9229 --require ts-node/register src/server.ts"
+}

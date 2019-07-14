@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  micro-sample:
+    image: micro-sample_release
+    container_name: micro-sample_release
+    build:
+      context: ../../
+      dockerfile: docker/release/Dockerfile
+      args:
+        - PORT=8080
+        - NPM_TOKEN=${NPM_TOKEN}
+    ports:
+      - 8080:8080
+    env_file:
+      - ../../.env
+    environment:
+      - PORT=8080
+      - NODE_ENV=production

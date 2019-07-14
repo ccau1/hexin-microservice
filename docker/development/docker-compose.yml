@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  micro-sample:
+    image: micro-sample
+    container_name: micro-sample
+    build:
+      context: ../../
+      dockerfile: docker/development/Dockerfile
+      args:
+        - PORT=8080
+    ports:
+      - 8080:8080
+      - 9229:9229
+    volumes:
+      - ../../:/usr/src/app
+    env_file:
+      - ../../.env
+    environment:
+      - PORT=8080
+      - NODE_ENV=development
+    command: nodemon --config nodemon.json
