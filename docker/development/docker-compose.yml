@@ -1,14 +1,16 @@
 version: '3.7'
 
 services:
-  micro-sample:
-    image: micro-sample
-    container_name: micro-sample
+  sample-service:
+    image: sample-service
+    container_name: sample-service
     build:
       context: ../../
       dockerfile: docker/development/Dockerfile
       args:
         - PORT=8080
+    links:
+      - rabbitmq
     ports:
       - 8080:8080
       - 9229:9229
@@ -20,3 +22,17 @@ services:
       - PORT=8080
       - NODE_ENV=development
     command: nodemon --config nodemon.json
+    networks:
+      - services
+  rabbitmq:
+    image: rabbitmq:management-alpine
+    container_name: rabbitmq
+    ports:
+      - 15672:15672
+    networks:
+      - services
+
+networks:
+  services:
+    name: services
+    driver: bridge

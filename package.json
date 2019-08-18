@@ -1,5 +1,5 @@
 {
-  "name": "micro-sample",
+  "name": "hexin-microservice",
   "version": "0.0.1",
   "description": "",
   "main": "server.ts",
@@ -8,15 +8,15 @@
     "start": "node dist/server.js",
     "release": "docker-compose -f docker/release/docker-compose.yml up -d --build",
     "build": "tsc --p tsconfig.json",
-    "log": "docker logs -f micro-sample --since $(date \"+%s\")",
-    "test": "jest",
+    "log": "docker logs -f sample-service",
+    "test": "jest --forceExit",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "author": "",
   "license": "ISC",
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn test"
+      "pre-commit": "yarn lint"
     }
   },
   "devDependencies": {
@@ -36,6 +36,9 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "@types/amqplib": "^0.5.13",
+    "amqplib": "^0.5.5",
+    "chalk": "^2.4.2",
     "express": "^4.17.1",
     "node": "^12.6.0"
   }
