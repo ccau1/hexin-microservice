@@ -4,8 +4,8 @@ export default class RabbitMQ {
   protected connection: amqp.Connection;
   public constructor() {
     this.connect().then((connection: amqp.Connection): void => {
-      this.onLoad(connection);
       this.connection = connection;
+      this.onLoad(connection);
     })
   }
   protected async connect(): Promise<amqp.Connection> {
